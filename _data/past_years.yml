@@ -1,0 +1,8 @@
+2019:
+    year: 2017
+    url: "/2017/"
+    relative: true
+2017:
+    year: 2011
+    url: "https://issuu.com/michaelmarston/docs/nu-disoguide"
+    relative: false

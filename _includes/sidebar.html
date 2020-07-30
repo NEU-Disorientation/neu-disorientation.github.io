@@ -1,6 +1,10 @@
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
+      <a href="{{ site.baseurl }}">
+        <img src="{{ site.baseurl }}public/disorientation-248x248.jpg" alt="Disorientation" srcset="{{ site.baseurl }}public/disorientation-248x248.jpg 248w, {{ site.baseurl }}public/disorientation-150x150.jpg 150w" sizes="(max-width: 400px) 150px, 248px"/>
+      </a>
+        
       <h1>
         <a href="{{ site.baseurl }}">
           {{ site.title }}
@@ -10,27 +14,26 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
-
-      {% comment %}
-        The code below dynamically generates a sidebar nav of pages with
-        `layout: page` in the front-matter. See readme for usage.
-      {% endcomment %}
-
-      {% assign pages_list = site.pages %}
-      {% for node in pages_list %}
-        {% if node.title != null %}
-          {% if node.layout == "page" %}
-            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-          {% endif %}
-        {% endif %}
+      {% assign page_year = page.dir | remove: '/' | times: 1 %}
+      {% if page_year == 0 %}
+        {% assign page_year = site.default_year %}
+      {% endif %}
+      
+      {% assign all_pages = site.data.pages[page_year] %}
+      {% assign page_index = 1 %}
+      {% for page_info in all_pages %}
+        <a class="sidebar-nav-item{% if page_info.alt_url == page.url %} active{% endif %}" href="{{ page_info.url | relative_url }}">{{ page_index }}. {{ page_info.title }}</a>
+        {% assign page_index = page_index | plus: 1 %}
       {% endfor %}
 
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
+      {% assign last_year_info = site.data.past_years[page_year] %}
+      {% if last_year_info %}
+        {% assign last_disorientation_url = last_year_info.url %}
+        {% if last_year_info.relative %}
+          {% assign last_disorientation_url = last_year_info.url | relative_url %}
+        {% endif %}
+        <a class="sidebar-nav-item" href="{{ last_disorientation_url }}">See the {{ last_year_info.year }} Disorientation Guide</a>
+      {% endif %}
     </nav>
-
-    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
   </div>
 </div>

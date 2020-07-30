@@ -6,3 +6,34 @@ layout: default
   <h1 class="page-title">{{ page.title }}</h1>
   {{ content }}
 </div>
+
+<div class="pagination">
+  {% assign page_year = page.dir | remove: '/' | times: 1 %}
+  {% if page_year == 0 %}
+    {% assign page_year = site.default_year %}
+  {% endif %}
+      
+  {% assign all_pages = site.data.pages[page_year] %}
+  {% assign page_index = 0 %}
+  
+  {% for page_info in all_pages %}
+    {% if page_info.alt_url == page.url %}
+      {% if page_info == all_pages.first %}
+        <span class="pagination-item older">Previous</span>
+      {% else %}
+        {% assign previous_index = page_index | minus: 1 %}
+        <a class="pagination-item older" href="{{ all_pages[previous_index].url | relative_url }}">Previous</a>
+      {% endif %}
+    
+      {% if page_info == all_pages.last %}
+        <span class="pagination-item newer">Next</span>
+      {% else %}
+        {% assign next_index = page_index | plus: 1 %}
+        <a class="pagination-item newer" href="{{ all_pages[next_index].url | relative_url }}">Next</a>
+      {% endif %}
+      
+      {% break %}
+    {% endif %}
+    {% assign page_index = page_index | plus: 1 %}
+  {% endfor %}
+</div>

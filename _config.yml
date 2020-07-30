@@ -1,23 +1,16 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
-
-# Permalinks
-permalink:        pretty
-relative_permalinks: true
+markdown:         kramdown
+highlighter:      pygment
 
 # Setup
-title:            Hyde
-tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+title:            Disorientation
+tagline:          'A resource guide for student organizing and social justice issues at Northeastern University.'
+description:      'A resource guide for student organizing and social justice issues at Northeastern University.'
 url:              http://hyde.getpoole.com
 baseurl:          /
+default_year:     2019
 
-author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
-
-paginate:         5
+paginate:         1
 
 # Custom vars
 version:          2.1.0
