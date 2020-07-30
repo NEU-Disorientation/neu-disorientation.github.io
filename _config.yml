@@ -10,7 +10,5 @@ url:              http://neu-disorientation.github.io
 baseurl:          /
 default_year:     2019
 
-paginate:         1
-
 # Custom vars
 version:          2.1.0
