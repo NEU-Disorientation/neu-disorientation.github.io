@@ -8,11 +8,31 @@
       </a>
       <nav class="header__links">
         <div class="container header__links-wrapper">
-          {% for item in site.navigation %}
-            <a class="header__link" href="{{ item.link | relative_url }}" itemprop="url">
-              <span itemprop="name">{{ item.name }}</span>
-            </a>
+          <select id="year-dropdown">
+          {% for year_info in site.data.years %}
+            <option value="{{ year_info.url }}">{{ year_info.year }}</option>
           {% endfor %}
+          </select>
+      
+          {% assign page_year = page.dir | remove: '/' | times: 1 %}
+          {% if page_year == 0 %}
+            {% assign page_year = site.default_year %}
+          {% endif %}
+
+          {% assign all_pages = site.data.pages[page_year] %}
+
+          <select id="article-dropdown">
+            {% for page_info in all_pages %}
+               <option value="{{ page_info.url }}">{{ page_info.title }}</option>
+            {% endfor %}
+          </select>
+
+          {% comment %}
+          Make sure the above selects have some space between them, and also that they don't go beyond the width of their container (if the text is too big, overflow with ellipses)
+          {% endcomment %}
+          <style>
+            .header__links-wrapper select { margin: auto 1vw auto 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          </style>
         </div>
       </nav>
       <div class="header__toggle">

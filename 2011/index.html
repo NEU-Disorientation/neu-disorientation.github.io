@@ -1,0 +1,36 @@
+---
+layout: page
+title: Welcome to the 2011 Disorientation Guide!
+---
+<div id="iframe-container">
+  <iframe src="{{ "/assets/disorientation-2011.pdf" | relative_url }}" width="840" height="650"></iframe>
+</div>
+<style>
+#iframe-container {
+  width: 100%;
+  --aspect-ratio: 17/13;
+}
+{% comment %} https://css-tricks.com/responsive-iframes/ {% endcomment %}
+#iframe-container > :first-child {
+  width: 100%;
+}
+#iframe-container > img {  
+  height: auto;
+} 
+@supports (--custom:property) {
+  #iframe-container {
+    position: relative;
+  }
+  #iframe-container::before {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }  
+  #iframe-container > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }  
+}
+</style>
