@@ -4,7 +4,7 @@ author: NEU Disorientation
 description: > # Meta description of Homepage
   A resource guide for student organizing and social justice issues at
   Northeastern University.
-url: "https://neu-disorientation.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://disorientation.nu/" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/" # the subpath of your site, e.g. /blog
 default_year: 2020
 
